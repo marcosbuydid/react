@@ -105,7 +105,7 @@ getRestaurantByIdAsync(5)
 
 //fetch API using giphy.com
 const apiKey = 'OTqQ2Jl2JvdRzZtZylYRmuPeGjSTCo4z';
-const petition = fetch('https://api.giphy.com/v1/gifs/random?api_key=' + apiKey);
+const petition = fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
 
 petition
     .then(response => response.json())
@@ -120,3 +120,31 @@ petition
     .catch(console.warn)
 
 
+//async and await
+
+/*
+When defining a function as async we can use the keyword "await"
+before of any expression that returns a promise. By doing that
+the external function (async) will pause until the promise is resolved.
+The keyword await receives a promise and convert it to a return value
+(or generate an exception error).
+When using await, javascypt will wait until the promise finish. If is
+completed with success the obtained value is returned, else if is 
+rejected, an error is throwed by the exception.
+*/
+
+const getImage = async () => {
+    try {
+        const apiKey = 'OTqQ2Jl2JvdRzZtZylYRmuPeGjSTCo4z';
+        const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
+        const { data } = await response.json();
+        const { url } = data.images.original;
+        const img = document.createElement('img');
+        img.src = url;
+        document.body.append(img);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getImage();
