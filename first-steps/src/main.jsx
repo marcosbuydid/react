@@ -5,6 +5,6 @@ import './styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <App propOne="This is propOne" propTwo="This is propTwo" />
+        <App title="CounterApp" counter={0} />
     </React.StrictMode>
 );
