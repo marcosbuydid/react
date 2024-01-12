@@ -9,7 +9,7 @@ let age = 34;
 age = 35;
 
 //Function
-function getFullInformation(name, lastName, age) {
+export function getFullInformation(name, lastName, age) {
     return name + ' ' + lastName + ' ' + age;
 }
 
@@ -55,11 +55,11 @@ console.log(name2);
 console.log(age2);
 console.log(address);
 
-const getInformation = ({ name }) => {
-    console.log(name)
+export const getAddressInformation = (person) => {
+    return person.address;
 }
 
-getInformation(person);
+//getInformation(person);
 
 const personNames = ['Nick', 'Michael', 'Peter'];
 console.log(personNames[1]);
