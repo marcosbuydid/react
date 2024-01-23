@@ -9,7 +9,7 @@ let age = 34;
 age = 35;
 
 //Function
-function getFullInformation(name, lastName, age) {
+export function getFullInformation(name, lastName, age) {
     return name + ' ' + lastName + ' ' + age;
 }
 
@@ -55,11 +55,13 @@ console.log(name2);
 console.log(age2);
 console.log(address);
 
-const getInformation = ({ name }) => {
-    console.log(name)
+export const getAddressInformation = (person) => {
+    return person.address;
 }
 
-getInformation(person);
+export const getArrayData = () => {
+    return ['ABC', 124];
+}
 
 const personNames = ['Nick', 'Michael', 'Peter'];
 console.log(personNames[1]);
@@ -69,11 +71,11 @@ const useState = (value) => {
 }
 
 //import export and common array functions
-const getRestaurantById = (id) => {
+export const getRestaurantById = (id) => {
     return (restaurants).find((restaurant) => restaurant.id === id);
 }
 
-const filterRestaurantByOwner = (owner) => {
+export const filterRestaurantByOwner = (owner) => {
     return (restaurants).filter((restaurant) => restaurant.owner.includes(owner));
 }
 
@@ -82,7 +84,7 @@ console.log(getRestaurantById(4));
 console.log(filterRestaurantByOwner('Dominique'));
 
 //Promises
-const getRestaurantByIdAsync = (id) => {
+export const getRestaurantByIdAsync = (id) => {
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -91,9 +93,9 @@ const getRestaurantByIdAsync = (id) => {
                 resolve(restaurant);
             }
             else {
-                reject('Cannot find the restaurant');
+                reject('Cannot find the restaurant with this id');
             }
-        }, 2000)
+        }, 1000)
     });
 
 };
@@ -133,17 +135,31 @@ completed with success the obtained value is returned, else if is
 rejected, an error is throwed by the exception.
 */
 
-const getImage = async () => {
+export const getImage = async () => {
     try {
         const apiKey = 'OTqQ2Jl2JvdRzZtZylYRmuPeGjSTCo4z';
         const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
         const { data } = await response.json();
         const { url } = data.images.original;
-        const img = document.createElement('img');
-        img.src = url;
-        document.body.append(img);
+        //comment this three lines for testing purpose only.
+        // const img = document.createElement('img');
+        // img.src = url;
+        // document.body.append(img);
+        return url;
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const getImageWrongApiKey = async () => {
+    try {
+        const apiKey = 'OTqQ2Jl2JvghghOFGOD';
+        const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
+        const { data } = await response.json();
+        const { url } = data.images.original;
+        return url;
+    } catch (error) {
+        console.log(error);
     }
 }
 

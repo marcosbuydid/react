@@ -24,3 +24,8 @@ You may also see any lint errors in the console.
 
 ### javascript-basics
 This folder contains some javascript basics concepts and examples to get started.
+
+### first-steps
+This folder contains a simple web page with 3 buttons for increment, decrement or
+reset a value. Also unit and integration tests are included using Jest, a javascript
+testing framework.

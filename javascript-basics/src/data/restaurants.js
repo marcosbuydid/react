@@ -25,7 +25,3 @@ export const restaurants = [
         owner: 'Rene Redzepi'
     },
 ];
-
-export default {
-    restaurants,
-}
