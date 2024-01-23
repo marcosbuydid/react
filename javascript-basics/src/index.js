@@ -159,7 +159,7 @@ export const getImageWrongApiKey = async () => {
         const { url } = data.images.original;
         return url;
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
 }
 
