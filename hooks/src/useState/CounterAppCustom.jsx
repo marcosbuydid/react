@@ -10,8 +10,8 @@ export const CounterAppCustom = () => {
         <Fragment>
             <h1>Counter: {counter}</h1>
             <hr />
-            <button className="btn btn-primary" onClick={() => increment(2)}> Increase +1 </button>
-            <button className="btn btn-primary" onClick={() => decrement(3)}> Decrease -1 </button>
+            <button className="btn btn-primary" onClick={() => increment(2)}> Increase</button>
+            <button className="btn btn-primary" onClick={() => decrement(3)}> Decrease</button>
             <button className="btn btn-primary" onClick={reset}> Reset </button>
         </Fragment >
     )
