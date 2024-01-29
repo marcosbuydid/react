@@ -9,6 +9,7 @@ import './index.css';
 import { FocusScreen } from './useRef/FocusScreen';
 import { Memorize } from './memo/Memorize';
 import { MemorizeCustom } from './memo/MemorizeCustom';
+import { CallBack } from './memo/CallBack';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -19,7 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <CustomForm /> */}
     {/* <FocusScreen /> */}
     {/* <Memorize /> */}
-    <MemorizeCustom />
+    {/* <MemorizeCustom /> */}
+    <CallBack />
 
   </React.StrictMode>
 )
