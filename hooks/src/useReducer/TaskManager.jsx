@@ -1,51 +1,17 @@
 import React from 'react'
-import { useReducer, useEffect } from 'react'
-import { taskManagerReducer } from './TaskManagerReducer'
 import { TaskList } from './TaskList'
 import { AddTask } from './AddTask'
-
-const initialTasks = [];
-
-const initializer = () => {
-    return JSON.parse(localStorage.getItem('tasks')) || [];
-}
+import { useTask } from '../hooks/useTask'
 
 export const TaskManager = () => {
 
-    const [tasks, dispatch] = useReducer(taskManagerReducer, initialTasks, initializer);
-
-    const handleNewTask = (task) => {
-        const action = {
-            type: 'Add Task',
-            payload: task
-        }
-
-        dispatch(action);
-    }
-
-    const handleTaskRemoval = (id) => {
-        dispatch({
-            type: 'Delete Task',
-            payload: id
-        });
-    }
-
-    const handleTaskDone = (id) => {
-        dispatch({
-            type: 'Finish Task',
-            payload: id
-        });
-    }
-
-    //save the tasks on local storage
-    useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }, [tasks])
-
+    const { tasks, handleNewTask, handleTaskRemoval, handleTaskDone, tasksQuantity, tasksNotFinished } = useTask();
 
     return (
         <>
             <h1>Task Manager</h1>
+            <h3>Quantity: {tasksQuantity}</h3>
+            <h3>Not Finished: {tasksNotFinished}</h3>
             <hr />
 
             <div className="row">
