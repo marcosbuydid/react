@@ -4,11 +4,12 @@ import { LoginPage } from './LoginPage';
 import { AboutPage } from './AboutPage';
 import { NotFoundPage } from "./NotFoundPage";
 import { Navbar } from "./Navbar";
+import { UserProvider } from "./context/UserProvider";
 
 export const MainPage = () => {
 
     return (
-        <>
+        <UserProvider>
             <Navbar />
             <hr />
 
@@ -22,6 +23,6 @@ export const MainPage = () => {
                 {/* Alternative to redirect to specific page */}
                 {/* <Route path="/*" element={<Navigate to="/about" />} /> */}
             </Routes>
-        </>
+        </UserProvider>
     )
 }
