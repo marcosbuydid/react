@@ -11,20 +11,23 @@ import { Memorize } from './memo/Memorize';
 import { MemorizeCustom } from './memo/MemorizeCustom';
 import { CallBack } from './memo/CallBack';
 import { TaskManager } from './useReducer/TaskManager';
+import { MainPage } from './useContext/MainPage';
+import { BrowserRouter, createBrowserRouter, RouterProvider, } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/* <Hooks /> */}
-    {/* <CounterApp /> */}
-    {/* <CounterAppCustom /> */}
-    {/* <SimpleForm /> */}
-    {/* <CustomForm /> */}
-    {/* <FocusScreen /> */}
-    {/* <Memorize /> */}
-    {/* <MemorizeCustom /> */}
-    {/* <CallBack /> */}
-    <TaskManager />
-
-
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      {/* <Hooks /> */}
+      {/* <CounterApp /> */}
+      {/* <CounterAppCustom /> */}
+      {/* <SimpleForm /> */}
+      {/* <CustomForm /> */}
+      {/* <FocusScreen /> */}
+      {/* <Memorize /> */}
+      {/* <MemorizeCustom /> */}
+      {/* <CallBack /> */}
+      {/* <TaskManager /> */}
+      <MainPage />
+    </React.StrictMode>
+  </BrowserRouter>
 )
