@@ -30,6 +30,13 @@ export const TaskManager = () => {
         });
     }
 
+    const handleTaskDone = (id) => {
+        dispatch({
+            type: 'Finish Task',
+            payload: id
+        });
+    }
+
     //save the tasks on local storage
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -43,7 +50,11 @@ export const TaskManager = () => {
 
             <div className="row">
                 <div className="col-7">
-                    <TaskList tasks={tasks} onDeleteTask={handleTaskRemoval} />
+                    <TaskList
+                        tasks={tasks}
+                        onDeleteTask={handleTaskRemoval}
+                        onTaskFinished={handleTaskDone}
+                    />
                 </div>
 
                 <div className="col-5">

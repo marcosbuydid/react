@@ -9,6 +9,17 @@ export const taskManagerReducer = (initialTasks, action) => {
         case 'Delete Task':
             return initialTasks.filter(task => task.id !== action.payload);
 
+        case 'Finish Task':
+            return initialTasks.map(task => {
+                if (task.id === action.payload) {
+                    return {
+                        ...task,
+                        done: !task.done
+                    }
+                }
+                return task;
+            });
+
         default:
             return initialTasks;
     }
