@@ -1,21 +1,18 @@
 import React from 'react'
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import { taskManagerReducer } from './TaskManagerReducer'
 import { TaskList } from './TaskList'
 import { AddTask } from './AddTask'
 
-const initialTasks = [
-    {
-        id: new Date().getTime(),
-        description: 'Sample Task',
-        date: new Date().toUTCString(),
-        done: false
-    },
-]
+const initialTasks = [];
+
+const initializer = () => {
+    return JSON.parse(localStorage.getItem('tasks')) || [];
+}
 
 export const TaskManager = () => {
 
-    const [tasks, dispatch] = useReducer(taskManagerReducer, initialTasks);
+    const [tasks, dispatch] = useReducer(taskManagerReducer, initialTasks, initializer);
 
     const handleNewTask = (task) => {
         const action = {
@@ -26,6 +23,19 @@ export const TaskManager = () => {
         dispatch(action);
     }
 
+    const handleTaskRemoval = (id) => {
+        dispatch({
+            type: 'Delete Task',
+            payload: id
+        });
+    }
+
+    //save the tasks on local storage
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks])
+
+
     return (
         <>
             <h1>Task Manager</h1>
@@ -33,7 +43,7 @@ export const TaskManager = () => {
 
             <div className="row">
                 <div className="col-7">
-                    <TaskList tasks={tasks} />
+                    <TaskList tasks={tasks} onDeleteTask={handleTaskRemoval} />
                 </div>
 
                 <div className="col-5">
