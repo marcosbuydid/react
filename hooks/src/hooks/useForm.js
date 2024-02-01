@@ -20,6 +20,7 @@ export const useForm = (formObject = {}) => {
     }
 
     return {
+        ...formState,
         formState,
         onInputChange,
         clearForm,
