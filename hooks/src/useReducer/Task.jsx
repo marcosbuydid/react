@@ -5,6 +5,7 @@ export const Task = ({ task, onDeleteTask, onTaskFinished }) => {
             <li className='list-group-item d-flex justify-content-end'>
                 <span
                     className={`p-2 flex-grow-1 bd-highlight ${task.done && 'text-decoration-line-through'}`}
+                    aria-label="span"
                 >{task.description}
                 </span>
                 <button
