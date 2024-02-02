@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Task } from "../../src/useReducer/Task";
 
 describe('Test on <Task />', () => {
@@ -36,7 +36,52 @@ describe('Test on <Task />', () => {
         expect(spanElement.className).not.toContain('text-decoration-line-through')
     })
 
+    test('must show a task completed', () => {
 
+        task.done = true;
 
+        render(
+            <Task
+                task={task}
+                onDeleteTask={onDeleteTaskMock}
+                onTaskFinished={onTaskFinishedMock}
+            />
+        )
 
-})
+        const spanElement = screen.getByLabelText('span');
+        expect(spanElement.className).toContain('p-2 flex-grow-1 bd-highlight')
+
+    })
+
+    test('must tag a task as finished when mark as done button is pressed', () => {
+
+        render(
+            <Task
+                task={task}
+                onDeleteTask={onDeleteTaskMock}
+                onTaskFinished={onTaskFinishedMock}
+            />
+        )
+
+        const doneButton = screen.getByRole('button', { name: 'Mark as done' });
+        fireEvent.click(doneButton);
+
+        expect(onTaskFinishedMock).toHaveBeenCalledWith(task.id);
+    })
+
+    test('must delete a task when delete task button is pressed', () => {
+
+        render(
+            <Task
+                task={task}
+                onDeleteTask={onDeleteTaskMock}
+                onTaskFinished={onTaskFinishedMock}
+            />
+        )
+
+        const deleteButton = screen.getByRole('button', { name: 'Delete task' });
+        fireEvent.click(deleteButton);
+
+        expect(onDeleteTaskMock).toHaveBeenCalledWith(task.id);
+    })
+});
