@@ -26,6 +26,10 @@ You may also see any lint errors in the console.
 This folder contains some javascript basics concepts and examples to get started.
 
 ### first-steps
-This folder contains a simple web page with 3 buttons for increment, decrement or
-reset a value. Also unit and integration tests are included using Jest, a javascript
-testing framework.
+This folder contains a simple web page with a counter example to get started 
+with React. Also unit and integration tests are included using Jest.
+
+### hooks
+This folder contains various examples using the implementation of various custom 
+hooks including the most used in React. Additionally the tests of the hooks and 
+components created are included to advance in the use of Jest.
