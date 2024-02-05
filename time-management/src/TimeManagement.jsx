@@ -1,5 +1,11 @@
+import { BrowserRouter } from "react-router-dom"
+import { RouteManager } from "./router/RouteManager"
+
 export const TimeManagement = () => {
     return (
-        <h3>Time Management</h3>
+        <BrowserRouter>
+            <RouteManager />
+        </BrowserRouter>
+
     )
 }
