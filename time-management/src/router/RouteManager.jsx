@@ -10,7 +10,7 @@ export const RouteManager = () => {
     return (
         <Routes>
             {
-                (authStatus === 'not-authenticated')
+                (authStatus != 'not-authenticated')
                     ? <Route path="/auth/*" element={<SignInPage />} />
                     : <Route path="/*" element={<ManagementPage />} />
             }
