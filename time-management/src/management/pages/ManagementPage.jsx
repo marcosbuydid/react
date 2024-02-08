@@ -5,6 +5,7 @@ import { localizer } from '../../utils/calendarLocalizer';
 import { Navbar } from "../components/Navbar"
 import { CalendarEvent } from '../components/CalendarEvent';
 import { useState } from 'react';
+import { CustomModal } from '../components/CustomModal';
 
 const user = {
     id: 324624,
@@ -57,6 +58,8 @@ export const ManagementPage = () => {
                 onSelectEvent={onSelect}
                 onView={onViewChanged}
             />
+
+            <CustomModal />
         </>
     )
 }
