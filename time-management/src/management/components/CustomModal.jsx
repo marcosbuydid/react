@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
+import { useUiStore } from '../../hooks/useUiStore';
 
 const customStyles = {
     content: {
@@ -22,12 +23,12 @@ Modal.setAppElement('#root');
 
 export const CustomModal = () => {
 
-    const [isVisible, setIsVisible] = useState(true);
-
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    const { isCustomModalOpen, closeCustomModal } = useUiStore();
+
     const onCloseModal = () => {
-        setIsVisible(false);
+        closeCustomModal();
     }
 
     const [formValues, setFormValues] = useState({
@@ -99,13 +100,11 @@ export const CustomModal = () => {
             Swal.fire('Notes cannot be empty', 'Write a note of at least 15 chars', 'error');
             return;
         }
-
-        console.log(formValues)
     }
 
     return (
         <Modal
-            isOpen={isVisible}
+            isOpen={isCustomModalOpen}
             onRequestClose={onCloseModal}
             style={customStyles}
             className={"modal"}
@@ -170,15 +169,26 @@ export const CustomModal = () => {
                         onChange={onInputChange}
                     ></textarea>
                 </div>
-
-                <div className="d-flex justify-content-end">
-                    <button
-                        type="submit"
-                        className="btn btn-outline-primary btn-block"
-                    >
-                        <i className="far fa-save"></i>
-                        <span> Save</span>
-                    </button>
+                <div className="d-flex justify-content-between">
+                    <div >
+                        <button
+                            type="button"
+                            className="btn btn-outline-danger btn-block"
+                            onClick={onCloseModal}
+                        >
+                            <i className="fa-regular fa-circle-xmark"></i>
+                            <span> Close</span>
+                        </button>
+                    </div>
+                    <div >
+                        <button
+                            type="submit"
+                            className="btn btn-outline-primary btn-block"
+                        >
+                            <i className="far fa-save"></i>
+                            <span> Save</span>
+                        </button>
+                    </div>
                 </div>
             </form>
 

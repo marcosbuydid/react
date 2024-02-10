@@ -6,6 +6,7 @@ import { Navbar } from "../components/Navbar"
 import { CalendarEvent } from '../components/CalendarEvent';
 import { useState } from 'react';
 import { CustomModal } from '../components/CustomModal';
+import { useUiStore } from '../../hooks/useUiStore';
 
 const user = {
     id: 324624,
@@ -22,14 +23,14 @@ const eventsList = [{
 
 export const ManagementPage = () => {
 
+    const { openCustomModal } = useUiStore();
+
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
-    const getEventProps = (event, start, end, isSelected) => {
-
-    }
+    const getEventProps = (event, start, end, isSelected) => { }
 
     const onDoubleClick = (event) => {
-        console.log({ doubleClick: event })
+        openCustomModal()
     }
 
     const onSelect = (event) => {
