@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Modal from 'react-modal';
 import './CustomModal.css';
 import { addHours, differenceInSeconds } from 'date-fns';
@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useUiStore } from '../../hooks/useUiStore';
+import { useCalendarStore } from '../../hooks/useCalendarStore';
 
 const customStyles = {
     content: {
@@ -26,6 +27,8 @@ export const CustomModal = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const { isCustomModalOpen, closeCustomModal } = useUiStore();
+
+    const { activeEvent, saveEvent } = useCalendarStore();
 
     const onCloseModal = () => {
         closeCustomModal();
@@ -79,7 +82,14 @@ export const CustomModal = () => {
         })
     }
 
-    const onFormSubmit = (event) => {
+    useEffect(() => {
+        if (activeEvent !== null) {
+            setFormValues({ ...activeEvent })
+        }
+    }, [activeEvent])
+
+
+    const onFormSubmit = async (event) => {
 
         event.preventDefault();
         setFormSubmitted(true);
@@ -100,6 +110,11 @@ export const CustomModal = () => {
             Swal.fire('Notes cannot be empty', 'Write a note of at least 15 chars', 'error');
             return;
         }
+
+        await saveEvent(formValues);
+        closeCustomModal();
+        setFormSubmitted(false);
+
     }
 
     return (

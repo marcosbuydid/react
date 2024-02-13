@@ -1,7 +1,9 @@
 
 export const Navbar = () => {
     return (
-        <div className="navbar navbar-expand-lg navbar-light rounded mb-4 px-4" style={{ backgroundColor: "#e3f2fd" }}>
+        <div className="navbar navbar-expand-lg navbar-light 
+        rounded mb-4 px-4 d-flex justify-content-end"
+            style={{ backgroundColor: "#e3f2fd" }}>
             <span className="navbar-brand">
                 <i className="fas fa-calendar-alt"></i>
                 &nbsp;
