@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom"
 import './SignInPage.css';
 import { useForm } from '../../../hooks/useForm';
+import { useAuthStore } from "../../../hooks/useAuthStore";
+import Swal from "sweetalert2";
 
 const loginFormFields = {
     email: '',
@@ -9,12 +12,21 @@ const loginFormFields = {
 
 export const SignInPage = () => {
 
+    const { login, errorMessage } = useAuthStore();
+
     const { email, password, onInputChange } = useForm(loginFormFields);
 
     const signIn = (event) => {
         event.preventDefault();
-        console.log({ email, password })
+        login({ email, password })
     }
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+            Swal.fire('Authentication error', errorMessage, 'error');
+        }
+    }, [errorMessage])
+
 
     return (
         <div className="container signin-container">
