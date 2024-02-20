@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from '../../hooks/useForm';
+import { useAuthStore } from "../../hooks/useAuthStore";
 import './SignUpPage.css';
+import Swal from "sweetalert2";
 
-const registerFormFields = {
+const signUpFormFields = {
     name: '',
     email: '',
     password: '',
@@ -11,12 +14,24 @@ const registerFormFields = {
 
 export const SignUpPage = () => {
 
-    const { name, email, password, repeatedPassword, onInputChange } = useForm(registerFormFields);
+    const { errorMessage, register } = useAuthStore();
+
+    const { name, email, password, repeatedPassword, onInputChange } = useForm(signUpFormFields);
 
     const signUp = (event) => {
         event.preventDefault();
-        console.log({ name, email, password, repeatedPassword })
+        if (password !== repeatedPassword) {
+            Swal.fire('Mismatch error', 'Passwords do not match', 'error');
+            return;
+        }
+        register({ name: name, email: email, password: password });
     }
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+            Swal.fire('Register error', errorMessage, 'error');
+        }
+    }, [errorMessage])
 
     return (
         <div className="container signup-container">
