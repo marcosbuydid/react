@@ -1,6 +1,5 @@
 import { useCalendarStore } from '../../hooks/useCalendarStore';
 import { useUiStore } from '../../hooks/useUiStore';
-import { addHours } from 'date-fns';
 import './AddEventButton.css';
 
 export const AddEventButton = () => {

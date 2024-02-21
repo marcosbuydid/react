@@ -51,12 +51,18 @@ export const calendarSlice = createSlice({
                     state.events.push(event);
                 }
             });
-        }
+        },
+
+        onBeforeLogout: (state) => {
+            state.loadingEvents = false;
+            state.events = [];
+            state.activeEvent = null;
+        },
     }
 });
 
 export const {
     onSetACtiveEvent, onAddNewEvent,
     onUpdateEvent, onDeleteEvent, onLoadEvents,
-    onClearState
+    onClearState, onBeforeLogout
 } = calendarSlice.actions;

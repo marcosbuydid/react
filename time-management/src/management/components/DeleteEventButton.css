@@ -1,8 +1,10 @@
 .fab-danger {
     border-radius: 100%;
-    bottom: 145px;
-    font-size: 35px;
-    padding: 25px;
-    position: fixed;
-    right: 55px;
+    padding-right: 1rem;
+    font-size: 25px;
+    position: relative;
+}
+
+.fa-trash-alt {
+    color: rgb(212, 12, 12);
 }

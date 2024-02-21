@@ -18,8 +18,15 @@ export const useCalendarStore = () => {
         dispatch(onSetACtiveEvent(calendarEvent));
     }
 
-    const deleteEvent = () => {
-        dispatch(onDeleteEvent());
+    const deleteEvent = async () => {
+        try {
+            await managementApi.put(`/events/${activeEvent._id}`);
+            dispatch(onDeleteEvent());
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+            Swal.fire('Cannot delete event', error.response.data.msg, 'error');
+        }
     }
 
     const saveEvent = async (calendarEvent) => {
@@ -38,7 +45,7 @@ export const useCalendarStore = () => {
             }
         } catch (error) {
             console.log(error);
-            Swal.fire('Cannot save event', error.response.data.msg, 'error')
+            Swal.fire('Cannot save event', error.response.data.msg, 'error');
         }
     }
 

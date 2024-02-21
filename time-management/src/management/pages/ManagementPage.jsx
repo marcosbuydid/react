@@ -7,8 +7,6 @@ import { useState } from 'react';
 import { CustomModal } from '../components/CustomModal';
 import { useUiStore } from '../../hooks/useUiStore';
 import { useCalendarStore } from '../../hooks/useCalendarStore';
-import { AddEventButton } from '../components/AddEventButton';
-import { DeleteEventButton } from '../components/DeleteEventButton';
 import { useEffect } from 'react';
 
 
@@ -60,9 +58,6 @@ export const ManagementPage = () => {
 
             <CustomModal />
 
-            <AddEventButton />
-
-            <DeleteEventButton />
         </>
     )
 }
