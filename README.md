@@ -37,10 +37,13 @@ components created are included to advance in the use of Jest.
 ### time-management
 This folder contains a web app that use a calendar to insert events with the
 purpose of tracking your different activities.
+
 This app consumes the REST API (https://github.com/marcosbuydid/time-management-backend)
 In this proyect I use React Router, JWT Authentication, Redux Toolkit, React Redux, 
 Axios and so much more.
+
 Before run the proyect, create a .env file inside proyect folder and
-put: VITE_API_URL=http://localhost:4000/api
+write inside: VITE_API_URL=http://localhost:4000/api
+
 After that install node modules, verify that the REST API is running and run 
 the proyect using npm run dev.
