@@ -1,0 +1,10 @@
+.fab {
+    border-radius: 100%;
+    padding-right: 3rem;
+    font-size: 25px;
+    position: relative;
+}
+
+.fa-file-circle-plus {
+    color: seagreen;
+}
