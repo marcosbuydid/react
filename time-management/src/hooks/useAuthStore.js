@@ -60,6 +60,7 @@ export const useAuthStore = () => {
                 const { data } = await managementApi.get('auth/refresh');
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('tokenIssueDate', new Date().getTime());
+                localStorage.setItem('loggedUser', data.name);
                 dispatch(onLogin({ name: data.name, uid: data.uid }));
             }
 

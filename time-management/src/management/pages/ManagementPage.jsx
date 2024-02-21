@@ -9,13 +9,14 @@ import { useUiStore } from '../../hooks/useUiStore';
 import { useCalendarStore } from '../../hooks/useCalendarStore';
 import { AddEventButton } from '../components/AddEventButton';
 import { DeleteEventButton } from '../components/DeleteEventButton';
+import { useEffect } from 'react';
 
 
 export const ManagementPage = () => {
 
     const { openCustomModal } = useUiStore();
 
-    const { events, setActiveEvent } = useCalendarStore();
+    const { events, setActiveEvent, loadEvents } = useCalendarStore();
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
@@ -33,6 +34,11 @@ export const ManagementPage = () => {
         localStorage.setItem('lastView', event);
         setLastView(event)
     }
+
+    useEffect(() => {
+        loadEvents();
+    }, [])
+
 
     return (
         <>

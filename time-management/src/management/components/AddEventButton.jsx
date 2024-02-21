@@ -6,19 +6,10 @@ import './AddEventButton.css';
 export const AddEventButton = () => {
 
     const { openCustomModal } = useUiStore();
-    const { setActiveEvent } = useCalendarStore();
+    const { beforeAddEvent } = useCalendarStore();
 
     const addNewEvent = () => {
-        setActiveEvent({
-            title: '',
-            notes: '',
-            startDate: new Date(),
-            endDate: addHours(new Date(), 1),
-            user: {
-                _id: 324624,
-                name: 'Marcos'
-            },
-        })
+        beforeAddEvent();
         openCustomModal();
     }
 
